@@ -8,7 +8,7 @@ namespace Linalg
     public partial class Vector
     {
         private readonly Rational[] vector;
-        public int Length { get; } = 0;
+        public int Dimension { get; } = 0;
 
         public Vector(int n) 
             : this(GetNewVector(n))
@@ -17,7 +17,7 @@ namespace Linalg
 
         public Vector(IEnumerable<Rational> vector) {
             this.vector = vector.ToArray();
-            Length = this.vector.Length;
+            Dimension = this.vector.Length;
         }
 
         public Rational this[int i]
@@ -64,10 +64,10 @@ namespace Linalg
 
         public Vector Normalize()
         {
-            return this / Norm();
+            return this / Length();
         }
 
-        public Rational Norm()
+        public Rational Length()
         {
             return DotProd(this).Sqrt();
         }
@@ -84,7 +84,7 @@ namespace Linalg
 
         private static void AssertLength(Vector a, Vector b, String message)
         {
-            if (a.Length != b.Length)
+            if (a.Dimension != b.Dimension)
                 throw new ArgumentException(message);
         }
     }

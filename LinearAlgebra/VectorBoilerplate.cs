@@ -18,10 +18,10 @@ namespace Linalg
 
             Vector that = (Vector) obj;
 
-            if (Length != that.Length)
+            if (Dimension != that.Dimension)
                 return false;
 
-            for (int i = 0; i < Length; i++)
+            for (int i = 0; i < Dimension; i++)
                 if (this[i] != that[i])
                     return false;
 

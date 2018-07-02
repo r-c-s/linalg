@@ -1,6 +1,6 @@
 ﻿## Linear Algebra in C#
 
-This is a math library I created to learn C#. It showcases OOP, generics, partial classes, operator overloading, the dynamic keyword, LINQ, threads, and unit testing.
+This is a math library I created to learn C#. It showcases OOP, generics, operator overloading, the dynamic keyword, LINQ, threads, and unit testing.
 
 The top level classes in this library are AbstractMatrix, Rational, Complex, Vector, and the Arithmetical interface that defines +-*/ operations.
 
@@ -19,7 +19,7 @@ Matrices can be multiplied in parallel, which is implemented by ParallelMatrixMu
 This was intended as an exercise for learning C#, and as such, it is not meant to be performant. :)
 
 
-##Sample Output
+## Sample Output
 
 ```
 -------VECTOR DEMO-------

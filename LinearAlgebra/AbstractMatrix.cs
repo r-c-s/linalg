@@ -27,6 +27,8 @@ namespace LinAlg
 
         protected abstract Component MulComponent(Component t0, Component t1);
 
+        protected abstract Component DivComponent(Component t0, Component t1);
+
         public Matrix Add(Matrix that)
         {
             if (!IsSameDimensionsAs(that))
@@ -84,6 +86,17 @@ namespace LinAlg
             return new Matrix().Set(result);
         }
 
+        public Matrix Div(Component scalar)
+        {
+            Component[,] result = new Component[Rows, Columns];
+
+            for (int i = 0; i < Rows; i++)
+                for (int j = 0; j < Columns; j++)
+                    result[i, j] = DivComponent(this[i, j], scalar);
+
+            return new Matrix().Set(result);
+        }
+
         public Matrix Transpose()
         {
             Component[,] transposed = new Component[Columns, Rows];
@@ -98,7 +111,7 @@ namespace LinAlg
         public Matrix GetBlock(int a, int b, int rows, int columns)
         {
             if (a + rows > Rows || b + columns > Columns)
-                throw new ArgumentException("Submatrix out of bounds.");
+                throw new IndexOutOfRangeException("Submatrix out of bounds.");
 
             Component[,] block = new Component[rows, columns];
 
@@ -112,7 +125,7 @@ namespace LinAlg
         public void SetBlock(int a, int b, Matrix block)
         {
             if (block.Rows + a > Rows || block.Columns + b > Columns)
-                throw new ArgumentException("Submatrix out of bounds.");
+                throw new IndexOutOfRangeException("Submatrix out of bounds.");
 
             for (int i = 0; i < block.Rows; i++)
                 for (int j = 0; j < block.Columns; j++)

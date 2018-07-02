@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Linalg.Tests
 {
@@ -33,6 +34,18 @@ namespace Linalg.Tests
 
             // Assert
             Assert.AreEqual(actual, A * B);
+        }
+
+        [TestMethod()]
+        public void TestMultiplyShouldFailNotEvenlyPartitioned()
+        {
+            // Arrange
+            UnsafeMatrix<long> A = Utils.RandomMatrix(50, 50);
+            UnsafeMatrix<long> B = Utils.RandomMatrix(50, 50);
+
+            // Act & Assert
+            Assert.ThrowsException<IndexOutOfRangeException>(() => 
+                new ParallelMatrixMultiplicator().Multiply<long>(A, B, 15));
         }
     }
 }

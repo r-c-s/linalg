@@ -61,10 +61,24 @@ class MatrixDemo
         Console.WriteLine();
 
         Console.WriteLine("Length of A:");
-        Console.WriteLine(A.Norm());
+        Console.WriteLine(A.Length());
         Console.WriteLine();
         Console.WriteLine("Length of B:");
-        Console.WriteLine(B.Norm());
+        Console.WriteLine(B.Length());
+        Console.WriteLine();
+
+        Console.WriteLine("A normalized:");
+        Console.WriteLine(A.Normalize());
+        Console.WriteLine();
+        Console.WriteLine("B normalized:");
+        Console.WriteLine(B.Normalize());
+        Console.WriteLine();
+
+        Console.WriteLine("Length of A normalized (should always be 1 or close enough due to rounding errors):");
+        Console.WriteLine(A.Normalize().Length());
+        Console.WriteLine();
+        Console.WriteLine("Length of B normalized (should always be 1 or close enough due to rounding errors):");
+        Console.WriteLine(B.Normalize().Length());
         Console.WriteLine();
     }
 
@@ -117,7 +131,7 @@ class MatrixDemo
         UnsafeMatrix<long> A = Utils.RandomMatrix(500, 750);
         UnsafeMatrix<long> B = Utils.RandomMatrix(750, 500);
 
-        Console.WriteLine("Multiplying two matrices of {0}x{1} and {2}x{3}", A.Rows, A.Columns, B.Rows, B.Columns);
+        Console.WriteLine("Multiplying two matrices {0}x{1} and {2}x{3}", A.Rows, A.Columns, B.Rows, B.Columns);
 
         Stopwatch stopWatch = new Stopwatch();
 

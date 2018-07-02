@@ -40,7 +40,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestAddShouldFail()
+        public void TestAddShouldFailDifferentDimensions()
         {
             // Arrange
             SafeMatrix<Rational> a = new SafeMatrix<Rational>(
@@ -94,7 +94,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestSubShouldFail()
+        public void TestSubShouldFailDifferentDimensions()
         {
             // Arrange
             SafeMatrix<Rational> a = new SafeMatrix<Rational>(
@@ -181,7 +181,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestMulShouldFail()
+        public void TestMulShouldFailIncompatibleDimensions()
         {
             // Arrange
             SafeMatrix<Rational> a = new SafeMatrix<Rational>(
@@ -253,6 +253,22 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
+        public void TestGetBlockShouldFailIndexOutOfBounds()
+        {
+            // Arrange
+            SafeMatrix<Rational> a = new SafeMatrix<Rational>(
+                new Rational[,] {
+                    { R(1), R(2), R(3) },
+                    { R(2), R(3), R(4) },
+                    { R(3), R(4), R(5) },
+                    { R(4), R(5), R(6) }
+                });
+
+            // Act & Assert
+            Assert.ThrowsException<IndexOutOfRangeException>(() => a.GetBlock(2, 1, 3, 3));
+        }
+
+        [TestMethod()]
         public void TestSetBlock()
         {
             // Arrange
@@ -283,6 +299,28 @@ namespace Linalg.Tests
                 });
 
             Assert.AreEqual(a, expected);
+        }
+
+        [TestMethod()]
+        public void TestSetBlockShouldFailIndexOutOfBounds()
+        {
+            // Arrange
+            SafeMatrix<Rational> a = new SafeMatrix<Rational>(
+                new Rational[,] {
+                    { R(1), R(2), R(3) },
+                    { R(2), R(3), R(4) },
+                    { R(3), R(4), R(5) },
+                    { R(4), R(5), R(6) }
+                });
+
+            SafeMatrix<Rational> block = new SafeMatrix<Rational>(
+                new Rational[,] {
+                    { R(0), R(0), R(0) },
+                    { R(0), R(0), R(0) }
+                });
+
+            // Act & Assert
+            Assert.ThrowsException<IndexOutOfRangeException>(() => a.SetBlock(2, 1, block));
         }
 
         private static Rational R(long nom)

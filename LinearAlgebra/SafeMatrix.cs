@@ -20,6 +20,8 @@ namespace Linalg
 
         protected override T MulComponent(T t0, T t1) => t0.Mul(t1);
 
+        protected override T DivComponent(T t0, T t1) => t0.Div(t1);
+
         public static SafeMatrix<T> operator +(SafeMatrix<T> a, SafeMatrix<T> b) => a.Add(b);
 
         public static SafeMatrix<T> operator -(SafeMatrix<T> a, SafeMatrix<T> b) => a.Sub(b);
@@ -27,5 +29,7 @@ namespace Linalg
         public static SafeMatrix<T> operator *(SafeMatrix<T> a, SafeMatrix<T> b) => a.Mul(b);
 
         public static SafeMatrix<T> operator *(SafeMatrix<T> a, T scalar) => a.Mul(scalar);
+
+        public static SafeMatrix<T> operator /(SafeMatrix<T> a, T scalar) => a.Div(scalar);
     }
 }

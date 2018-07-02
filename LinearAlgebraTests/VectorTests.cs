@@ -22,7 +22,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestAddFails()
+        public void TestAddShouldFailDifferentDimensions()
         {
             // Arrange
             Vector a = V(1, 2, 3);
@@ -47,7 +47,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestSubFails()
+        public void TestSubShouldFailDifferentDimensions()
         {
             // Arrange
             Vector a = V(1, 2, 3);
@@ -100,7 +100,7 @@ namespace Linalg.Tests
         }
 
         [TestMethod()]
-        public void TestDotProdFails()
+        public void TestDotProdShouldFailDifferentDimensions()
         {
             // Arrange
             Vector a = V(3, 6, 9);
@@ -120,7 +120,7 @@ namespace Linalg.Tests
             Vector actual = a.Normalize();
 
             // Assert
-            Assert.AreEqual(actual.Norm(), Rational.ONE);
+            Assert.AreEqual(actual.Length(), Rational.ONE);
         }
 
         [TestMethod()]
@@ -130,7 +130,7 @@ namespace Linalg.Tests
             Vector a = V(3, 6, 9);
 
             // Act
-            Rational actual = a.Norm();
+            Rational actual = a.Length();
 
             // Assert
             Assert.AreEqual(actual, new Rational(11));

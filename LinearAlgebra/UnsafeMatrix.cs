@@ -20,6 +20,8 @@ namespace Linalg
 
         protected override T MulComponent(T t0, T t1) => D(t0) * D(t1);
 
+        protected override T DivComponent(T t0, T t1) => D(t0) / D(t1);
+
         public static UnsafeMatrix<T> operator +(UnsafeMatrix<T> a, UnsafeMatrix<T> b) => a.Add(b);
 
         public static UnsafeMatrix<T> operator -(UnsafeMatrix<T> a, UnsafeMatrix<T> b) => a.Sub(b);
